@@ -1,6 +1,5 @@
 "use client";
 
-import { Poppins } from "next/font/google";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   UserCircle02Icon,
@@ -32,7 +31,7 @@ const NavIcons = () => {
       <div className="relative">
         <Listbox value={selected} onChange={setSelected}>
           {({ open }) => (
-            <>
+            <div>
               <Listbox.Button className="text-gray-500 rounded-full px-3 py-1 bg-transparent focus:outline-none cursor-pointer flex items-center gap-2">
                 <span className="w-[70px] text-start">{selected.name}</span>
                 <HugeiconsIcon
@@ -44,26 +43,27 @@ const NavIcons = () => {
                 />
               </Listbox.Button>
 
-              <Listbox.Options className="absolute mt-1 w-full bg-transparent shadow-lg rounded-xl outline-none cursor-pointer z-10">
+              <Listbox.Options className="absolute mt-1 w-full bg-white shadow-lg rounded-xl outline-none cursor-pointer z-10">
                 {languages.map((lang) => (
                   <Listbox.Option
                     key={lang.id}
                     value={lang}
-                    className="cursor-pointer px-3 py-1 rounded-md text-gray-600"
+                    className="cursor-pointer px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100"
                   >
                     {lang.name}
                   </Listbox.Option>
                 ))}
               </Listbox.Options>
-            </>
+            </div>
           )}
         </Listbox>
       </div>
 
+      {/* Currency Selector */}
       <div className="relative">
         <Listbox value={selectedCUR} onChange={setSelectedCUR}>
           {({ open }) => (
-            <>
+            <div>
               <Listbox.Button className="text-gray-500 rounded-full px-3 py-1 bg-transparent focus:outline-none cursor-pointer flex items-center gap-2">
                 <span className="w-[40px] text-start">{selectedCUR.name}</span>
                 <HugeiconsIcon
@@ -75,21 +75,22 @@ const NavIcons = () => {
                 />
               </Listbox.Button>
 
-              <Listbox.Options className="absolute mt-1 w-full bg-transparent shadow-lg rounded-xl outline-none cursor-pointer z-10">
-                {currency.map((lang) => (
+              <Listbox.Options className="absolute mt-1 w-full bg-white shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                {currency.map((cur) => (
                   <Listbox.Option
-                    key={lang.id}
-                    value={lang}
-                    className="cursor-pointer px-3 py-1 rounded-md text-gray-600"
+                    key={cur.id}
+                    value={cur}
+                    className="cursor-pointer px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100"
                   >
-                    {lang.name}
+                    {cur.name}
                   </Listbox.Option>
                 ))}
               </Listbox.Options>
-            </>
+            </div>
           )}
         </Listbox>
       </div>
+
       {/* Icons */}
       <HugeiconsIcon
         icon={UserCircle02Icon}
@@ -102,14 +103,11 @@ const NavIcons = () => {
         size={24}
       />
       <div className="relative inline-block cursor-pointer group">
-        {/* Icon */}
         <HugeiconsIcon
           icon={ShoppingBasket02Icon}
           className="text-gray-500 group-hover:text-gray-700 transition-colors"
           size={24}
         />
-
-        {/* Notification badge */}
         <span className="absolute top-0 -right-0 -translate-x-1/4 -translate-y-1/4 bg-[#7DB800] text-white text-xs font-semibold rounded-full px-2 py-0.5 flex items-center justify-center">
           0
         </span>
