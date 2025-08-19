@@ -11,13 +11,15 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
+const menuItems = ["Home", "Product", "Elements", "Shop", "Blog"];
+
 const Navigation = () => {
   const [active, setActive] = useState("Home");
   const [lineStyle, setLineStyle] = useState({});
   const ulRef = useRef<HTMLUListElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
 
-  const menu = ["Home", "Product", "Elements", "Shop", "Blog"];
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const activeEl = itemRefs.current[active];
@@ -31,11 +33,11 @@ const Navigation = () => {
   }, [active]);
 
   return (
-    <nav className="w-full h-[170px] flex flex-col items-center justify-between relative px-[40px] py-[40px]">
+    <nav className="w-full md:w-full flex flex-col items-center justify-between relative px-[20px] py-[10px]  md:px-[40px] md:py-[20px]">
       {/* TOP */}
       <div className="w-full px-6 py-2 flex items-center justify-between">
         <SearchBar />
-        <span className="w-1/3 flex items-center justify-center">
+        <span className=" w-auto md:w-1/3 flex items-center justify-center">
           <Image
             src="/logo.svg"
             alt="Logo"
@@ -44,17 +46,18 @@ const Navigation = () => {
             className="cursor-pointer"
           />
         </span>
+        {/* Desktop & Mobile icons */}
         <NavIcons />
       </div>
 
-      {/* BOTTOM */}
-      <div className="w-full px-6 py-2 flex items-center justify-center">
-        <ul ref={ulRef} className="relative">
-          {menu.map((item) => (
+      {/* BOTTOM - Desktop only */}
+      <div className="hidden md:flex w-full px-6 py-2 items-center justify-center">
+        <ul ref={ulRef} className="relative flex">
+          {menuItems.map((item) => (
             <li
               key={item}
               ref={(el) => {
-                itemRefs.current[item] = el; // ✅ no return
+                itemRefs.current[item] = el;
               }}
               onClick={() => setActive(item)}
               className={`inline-block px-4 py-2 cursor-pointer transition-colors ${
