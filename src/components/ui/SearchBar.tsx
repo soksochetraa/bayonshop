@@ -34,7 +34,7 @@ const SearchBar = () => {
   return (
     <form
       onSubmit={handleSearch}
-      className={`w-auto md:w-1/3 h-[44px] bg-white hidden  rounded-4xl sm:flex items-center justify-between px-4 text-[14px] ${poppins.variable} font-sans`}
+      className={`w-auto md:w-[358px] h-[44px] bg-white hidden rounded-4xl sm:flex items-center justify-between px-4 text-[14px] ${poppins.variable} font-sans`}
     >
       <input
         type="text"

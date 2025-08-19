@@ -1,6 +1,6 @@
 "use client";
 
-import { FaBars, FaTimes } from "react-icons/fa"; // Font Awesome
+import { FaBars, FaTimes } from "react-icons/fa";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   UserCircle02Icon,
@@ -35,7 +35,7 @@ const NavIcons = () => {
       <div className="md:hidden">
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="p-2 focus:outline-none text-gray-500"
+          className="p-2 focus:outline-none text-white"
         >
           {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
         </button>
@@ -51,7 +51,7 @@ const NavIcons = () => {
           <span className="text-xl font-semibold text-white">Menu</span>
           <button
             onClick={() => setMenuOpen(false)}
-            className="p-2 focus:outline-none text-gray-500"
+            className="p-2 focus:outline-none text-white"
           >
             <FaTimes size={28} />
           </button>
@@ -77,29 +77,29 @@ const NavIcons = () => {
           ))}
         </ul>
 
-        <div className="space-y-4">
+        <div className="flex justify-start space-y-4">
           {/* Language Selector */}
           <div className="relative">
             <Listbox value={selected} onChange={setSelected}>
               {({ open }) => (
                 <div>
-                  <Listbox.Button className="text-gray-500 rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
+                  <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
                     <span className="w-[70px] text-start">{selected.name}</span>
                     <HugeiconsIcon
                       icon={ArrowDown01Icon}
-                      className={`text-gray-500 transition-transform duration-200 ${
+                      className={`text-white transition-transform duration-200 ${
                         open ? "rotate-180" : "rotate-0"
                       }`}
                       size={24}
                     />
                   </Listbox.Button>
 
-                  <Listbox.Options className="absolute mt-1 w-[126px] bg-white shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                  <Listbox.Options className="absolute mt-1 w-[126px]shadow-lg rounded-xl outline-none cursor-pointer z-10">
                     {languages.map((lang) => (
                       <Listbox.Option
                         key={lang.id}
                         value={lang}
-                        className="cursor-pointer px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100"
+                        className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
                       >
                         {lang.name}
                       </Listbox.Option>
@@ -111,27 +111,27 @@ const NavIcons = () => {
           </div>
 
           {/* Currency Selector */}
-          <div className="relative">
+          <div className="relative mr-5">
             <Listbox value={selectedCUR} onChange={setSelectedCUR}>
               {({ open }) => (
                 <div>
-                  <Listbox.Button className="text-gray-500  rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
+                  <Listbox.Button className="text-white  rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
                     <span>{selectedCUR.name}</span>
                     <HugeiconsIcon
                       icon={ArrowDown01Icon}
-                      className={`text-gray-500 transition-transform duration-200 ${
+                      className={`text-white transition-transform duration-200 ${
                         open ? "rotate-180" : "rotate-0"
                       }`}
                       size={20}
                     />
                   </Listbox.Button>
 
-                  <Listbox.Options className="absolute w-[126px] mt-1  bg-white shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                  <Listbox.Options className="absolute w-[126px] mt-1 shadow-lg rounded-xl outline-none cursor-pointer z-10">
                     {currency.map((cur) => (
                       <Listbox.Option
                         key={cur.id}
                         value={cur}
-                        className="cursor-pointer  px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100"
+                        className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
                       >
                         {cur.name}
                       </Listbox.Option>
@@ -141,23 +141,22 @@ const NavIcons = () => {
               )}
             </Listbox>
           </div>
-
           {/* User, Favorites & Cart */}
           <div className="flex space-x-4">
             <HugeiconsIcon
               icon={UserCircle02Icon}
-              className="text-gray-500 hover:text-gray-700 transition-colors cursor-pointer"
+              className="text-white hover:text-gray-700 transition-colors cursor-pointer"
               size={24}
             />
             <HugeiconsIcon
               icon={FavouriteIcon}
-              className="text-gray-500 hover:text-gray-700 transition-colors cursor-pointer"
+              className="text-white hover:text-gray-700 transition-colors cursor-pointer"
               size={24}
             />
             <div className="relative inline-block cursor-pointer group">
               <HugeiconsIcon
                 icon={ShoppingBasket02Icon}
-                className="text-gray-500 group-hover:text-gray-700 transition-colors"
+                className="text-white group-hover:text-gray-700 transition-colors"
                 size={24}
               />
               <span className="absolute top-0 -right-0 -translate-x-1/4 -translate-y-1/4 bg-[#7DB800] text-white text-xs font-semibold rounded-full px-2 py-0.5 flex items-center justify-center">
@@ -175,23 +174,23 @@ const NavIcons = () => {
           <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
               <div>
-                <Listbox.Button className="text-gray-500 rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
+                <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
                   <span className="w-[70px] text-start">{selected.name}</span>
                   <HugeiconsIcon
                     icon={ArrowDown01Icon}
-                    className={`text-gray-500 transition-transform duration-200 ${
+                    className={`text-white transition-transform duration-200 ${
                       open ? "rotate-180" : "rotate-0"
                     }`}
                     size={24}
                   />
                 </Listbox.Button>
 
-                <Listbox.Options className="absolute mt-1 w-full bg-white shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                <Listbox.Options className="absolute mt-1 w-full rounded-xl outline-none cursor-pointer z-10">
                   {languages.map((lang) => (
                     <Listbox.Option
                       key={lang.id}
                       value={lang}
-                      className="cursor-pointer px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100"
+                      className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
                     >
                       {lang.name}
                     </Listbox.Option>
@@ -207,25 +206,25 @@ const NavIcons = () => {
           <Listbox value={selectedCUR} onChange={setSelectedCUR}>
             {({ open }) => (
               <div>
-                <Listbox.Button className="text-gray-500 rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
+                <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
                   <span className="w-[40px] text-start">
                     {selectedCUR.name}
                   </span>
                   <HugeiconsIcon
                     icon={ArrowDown01Icon}
-                    className={`text-gray-500 transition-transform duration-200 ${
+                    className={`text-white transition-transform duration-200 ${
                       open ? "rotate-180" : "rotate-0"
                     }`}
                     size={24}
                   />
                 </Listbox.Button>
 
-                <Listbox.Options className="absolute mt-1 w-full bg-white shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                <Listbox.Options className="absolute mt-1 w-full rounded-xl outline-none cursor-pointer z-10">
                   {currency.map((cur) => (
                     <Listbox.Option
                       key={cur.id}
                       value={cur}
-                      className="cursor-pointer px-3 py-1 rounded-md text-gray-600 hover:bg-gray-100"
+                      className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
                     >
                       {cur.name}
                     </Listbox.Option>
@@ -240,18 +239,18 @@ const NavIcons = () => {
         <div className="flex space-x-4">
           <HugeiconsIcon
             icon={UserCircle02Icon}
-            className="text-gray-500 hover:text-gray-700 transition-colors cursor-pointer"
+            className="text-white hover:text-gray-700 transition-colors cursor-pointer"
             size={24}
           />
           <HugeiconsIcon
             icon={FavouriteIcon}
-            className="text-gray-500 hover:text-gray-700 transition-colors cursor-pointer"
+            className="text-white hover:text-gray-700 transition-colors cursor-pointer"
             size={24}
           />
           <div className="relative inline-block cursor-pointer group">
             <HugeiconsIcon
               icon={ShoppingBasket02Icon}
-              className="text-gray-500 group-hover:text-gray-700 transition-colors"
+              className="text-white group-hover:text-gray-700 transition-colors"
               size={24}
             />
             <span className="absolute top-0 -right-0 -translate-x-1/4 -translate-y-1/4 bg-[#7DB800] text-white text-xs font-semibold rounded-full px-2 py-0.5 flex items-center justify-center">

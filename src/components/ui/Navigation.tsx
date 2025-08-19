@@ -33,13 +33,13 @@ const Navigation = () => {
   }, [active]);
 
   return (
-    <nav className="w-full md:w-full flex flex-col items-center justify-between relative px-[20px] py-[10px]  md:px-[40px] md:py-[20px]">
+    <nav className="w-full md:w-full flex flex-col items-center justify-between relative px-[20px] py-[10px] md:px-[40px] md:py-[20px]">
       {/* TOP */}
       <div className="w-full px-6 py-2 flex items-center justify-between">
         <SearchBar />
-        <span className=" w-auto md:w-1/3 flex items-center justify-center">
+        <span className="w-auto flex items-center justify-center">
           <Image
-            src="/logo.svg"
+            src="/icons/logo.svg"
             alt="Logo"
             width={155}
             height={54}
