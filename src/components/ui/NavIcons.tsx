@@ -1,5 +1,3 @@
-"use client";
-
 import { FaBars, FaTimes } from "react-icons/fa";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -41,11 +39,19 @@ const NavIcons = () => {
         </button>
       </div>
 
+      {/* Full-screen Overlay */}
+      <div
+        onClick={() => setMenuOpen(false)}
+        className={`fixed inset-0 bg-black transition-opacity duration-300 z-40 ${
+          menuOpen ? "opacity-50" : "opacity-0 pointer-events-none"
+        } md:hidden`}
+      />
+
       {/* Sidebar Menu - Mobile */}
       <div
-        className={`fixed inset-0 z-50 bg-black p-4 shadow-lg md:hidden transition-transform duration-300 ${
+        className={`fixed inset-y-0 right-0 z-50 bg-black p-4 shadow-lg md:hidden transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        } w-9/12`}
       >
         <div className="flex justify-between items-center mb-4">
           <span className="text-xl font-semibold text-white">Menu</span>
@@ -66,7 +72,7 @@ const NavIcons = () => {
                 setActiveItem(item);
                 setMenuOpen(false);
               }}
-              className={`px-4 py-2  cursor-pointer rounded transition-colors ${
+              className={`px-4 py-2 cursor-pointer rounded transition-colors ${
                 activeItem === item
                   ? "bg-[#7DB800] text-white"
                   : "text-white hover:bg-[#7DB800]/30"
@@ -115,7 +121,7 @@ const NavIcons = () => {
             <Listbox value={selectedCUR} onChange={setSelectedCUR}>
               {({ open }) => (
                 <div>
-                  <Listbox.Button className="text-white  rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
+                  <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
                     <span>{selectedCUR.name}</span>
                     <HugeiconsIcon
                       icon={ArrowDown01Icon}

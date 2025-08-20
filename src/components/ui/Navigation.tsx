@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
 import { Poppins } from "next/font/google";
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -18,8 +19,10 @@ const Navigation = () => {
   const [lineStyle, setLineStyle] = useState({});
   const ulRef = useRef<HTMLUListElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const activeEl = itemRefs.current[active];
@@ -33,7 +36,11 @@ const Navigation = () => {
   }, [active]);
 
   return (
-    <nav className="w-full md:w-full flex flex-col items-center justify-between relative px-[20px] py-[10px] md:px-[40px] md:py-[20px]">
+    <nav
+      className={`w-full md:w-full flex flex-col items-center justify-between relative px-[20px] py-[10px] md:px-[40px] md:py-[20px] transition-colors duration-300 ${
+        isHome ? "bg-transparent" : "bg-[#212121]"
+      }`}
+    >
       {/* TOP */}
       <div className="w-full px-6 py-2 flex items-center justify-between">
         <SearchBar />
