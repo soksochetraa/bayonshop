@@ -83,72 +83,9 @@ const NavIcons = () => {
           ))}
         </ul>
 
-        <div className="flex justify-start space-y-4">
-          {/* Language Selector */}
-          <div className="relative">
-            <Listbox value={selected} onChange={setSelected}>
-              {({ open }) => (
-                <div>
-                  <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
-                    <span className="w-[70px] text-start">{selected.name}</span>
-                    <HugeiconsIcon
-                      icon={ArrowDown01Icon}
-                      className={`text-white transition-transform duration-200 ${
-                        open ? "rotate-180" : "rotate-0"
-                      }`}
-                      size={24}
-                    />
-                  </Listbox.Button>
-
-                  <Listbox.Options className="absolute mt-1 w-[126px]shadow-lg rounded-xl outline-none cursor-pointer z-10">
-                    {languages.map((lang) => (
-                      <Listbox.Option
-                        key={lang.id}
-                        value={lang}
-                        className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
-                      >
-                        {lang.name}
-                      </Listbox.Option>
-                    ))}
-                  </Listbox.Options>
-                </div>
-              )}
-            </Listbox>
-          </div>
-
-          {/* Currency Selector */}
-          <div className="relative mr-5">
-            <Listbox value={selectedCUR} onChange={setSelectedCUR}>
-              {({ open }) => (
-                <div>
-                  <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
-                    <span>{selectedCUR.name}</span>
-                    <HugeiconsIcon
-                      icon={ArrowDown01Icon}
-                      className={`text-white transition-transform duration-200 ${
-                        open ? "rotate-180" : "rotate-0"
-                      }`}
-                      size={20}
-                    />
-                  </Listbox.Button>
-
-                  <Listbox.Options className="absolute w-[126px] mt-1 shadow-lg rounded-xl outline-none cursor-pointer z-10">
-                    {currency.map((cur) => (
-                      <Listbox.Option
-                        key={cur.id}
-                        value={cur}
-                        className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
-                      >
-                        {cur.name}
-                      </Listbox.Option>
-                    ))}
-                  </Listbox.Options>
-                </div>
-              )}
-            </Listbox>
-          </div>
+        <div className="flex flex-col justify-start space-y-4">
           {/* User, Favorites & Cart */}
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 mx-2.5">
             <HugeiconsIcon
               icon={UserCircle02Icon}
               className="text-white hover:text-gray-700 transition-colors cursor-pointer"
@@ -168,6 +105,72 @@ const NavIcons = () => {
               <span className="absolute top-0 -right-0 -translate-x-1/4 -translate-y-1/4 bg-[#7DB800] text-white text-xs font-semibold rounded-full px-2 py-0.5 flex items-center justify-center">
                 0
               </span>
+            </div>
+          </div>
+          <div className="flex justify-start">
+            {/* Language Selector */}
+            <div className="relative">
+              <Listbox value={selected} onChange={setSelected}>
+                {({ open }) => (
+                  <div>
+                    <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer">
+                      <span className="w-[70px] text-start">
+                        {selected.name}
+                      </span>
+                      <HugeiconsIcon
+                        icon={ArrowDown01Icon}
+                        className={`text-white transition-transform duration-200 ${
+                          open ? "rotate-180" : "rotate-0"
+                        }`}
+                        size={24}
+                      />
+                    </Listbox.Button>
+
+                    <Listbox.Options className="absolute mt-1 w-[126px] shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                      {languages.map((lang) => (
+                        <Listbox.Option
+                          key={lang.id}
+                          value={lang}
+                          className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
+                        >
+                          {lang.name}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </div>
+                )}
+              </Listbox>
+            </div>
+            {/* Currency Selector */}
+            <div className="relative mr-5">
+              <Listbox value={selectedCUR} onChange={setSelectedCUR}>
+                {({ open }) => (
+                  <div>
+                    <Listbox.Button className="text-white rounded-full px-3 py-1 flex items-center gap-2 cursor-pointer ">
+                      <span>{selectedCUR.name}</span>
+                      <HugeiconsIcon
+                        icon={ArrowDown01Icon}
+                        className={`text-white transition-transform duration-200 ${
+                          open ? "rotate-180" : "rotate-0"
+                        }`}
+                        size={20}
+                      />
+                    </Listbox.Button>
+
+                    <Listbox.Options className="absolute w-[126px] mt-1 shadow-lg rounded-xl outline-none cursor-pointer z-10">
+                      {currency.map((cur) => (
+                        <Listbox.Option
+                          key={cur.id}
+                          value={cur}
+                          className="cursor-pointer px-3 py-1 rounded-md text-white hover:text-[#7db800]"
+                        >
+                          {cur.name}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </div>
+                )}
+              </Listbox>
             </div>
           </div>
         </div>
