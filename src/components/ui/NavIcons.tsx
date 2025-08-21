@@ -1,4 +1,4 @@
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   UserCircle02Icon,
@@ -35,7 +35,7 @@ const NavIcons = () => {
           onClick={() => setMenuOpen(!menuOpen)}
           className="p-2 focus:outline-none text-white"
         >
-          {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
+          {menuOpen ? <FaBars size={28} /> : <FaBars size={28} />}
         </button>
       </div>
 
@@ -54,12 +54,14 @@ const NavIcons = () => {
         } w-9/12`}
       >
         <div className="flex justify-between items-center mb-4">
-          <span className="text-xl font-semibold text-white">Menu</span>
+          <span className="text-xl font-semibold text-white">
+            <img src="/icons/logo.svg" alt="" />
+          </span>
           <button
             onClick={() => setMenuOpen(false)}
             className="p-2 focus:outline-none text-white"
           >
-            <FaTimes size={28} />
+            <FaBars size={28} />
           </button>
         </div>
 
