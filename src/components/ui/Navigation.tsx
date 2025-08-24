@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // ✅ Import Link
 import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
 import { Poppins } from "next/font/google";
@@ -12,16 +13,24 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-const menuItems = ["Home", "Product", "Elements", "Shop", "Blog"];
+// ✅ map items to routes
+const menuItems: { name: string; path: string }[] = [
+  { name: "Home", path: "/" },
+  { name: "Product", path: "/product" },
+  { name: "Elements", path: "/elements" },
+  { name: "Shop", path: "/shop" },
+  { name: "Blog", path: "/blog" },
+];
 
 const Navigation = () => {
-  const [active, setActive] = useState("Home");
   const [lineStyle, setLineStyle] = useState({});
   const ulRef = useRef<HTMLUListElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const pathname = usePathname();
+  const active =
+    menuItems.find((item) => item.path === pathname)?.name || "Home";
   const isHome = pathname === "/";
 
   useEffect(() => {
@@ -45,13 +54,17 @@ const Navigation = () => {
       <div className="w-full px-6 py-2 flex items-center justify-between">
         <SearchBar />
         <span className="w-auto flex items-center justify-center">
-          <Image
-            src="/icons/logo.svg"
-            alt="Logo"
-            width={155}
-            height={54}
-            className="cursor-pointer"
-          />
+          <Link href="/">
+            {" "}
+            {/* ✅ Click logo to go Home */}
+            <Image
+              src="/icons/logo.svg"
+              alt="Logo"
+              width={155}
+              height={54}
+              className="cursor-pointer"
+            />
+          </Link>
         </span>
         {/* Desktop & Mobile icons */}
         <NavIcons />
@@ -62,18 +75,18 @@ const Navigation = () => {
         <ul ref={ulRef} className="relative flex">
           {menuItems.map((item) => (
             <li
-              key={item}
+              key={item.name}
               ref={(el) => {
-                itemRefs.current[item] = el;
+                itemRefs.current[item.name] = el;
               }}
-              onClick={() => setActive(item)}
               className={`inline-block px-4 py-2 cursor-pointer transition-colors ${
-                active === item
+                active === item.name
                   ? "text-[#7db800]"
                   : "text-white hover:text-[#7db800]"
               }`}
             >
-              {item}
+              {/* ✅ Link instead of onClick */}
+              <Link href={item.path}>{item.name}</Link>
             </li>
           ))}
           <span
