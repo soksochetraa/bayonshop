@@ -83,7 +83,8 @@ export const products: Product[] = [
     oldPrice: 699.99,
     discount: "30%",
     rating: 4.7,
-    image: "https://i.pinimg.com/736x/5e/6f/7g/5e6f7g.jpg",
+    image:
+      "https://i.pinimg.com/736x/99/47/38/994738dc99d6b8fe0a7104a216904923.jpg",
     countdownEnd: new Date(now + 72 * 60 * 60 * 1000),
   },
   {
@@ -94,7 +95,8 @@ export const products: Product[] = [
     oldPrice: 999.99,
     discount: "20%",
     rating: 4.9,
-    image: "https://i.pinimg.com/736x/6f/7g/8h/6f7g8h.jpg",
+    image:
+      "https://i.pinimg.com/1200x/00/44/6c/00446c739d58ec77d7ecfc2756558ac9.jpg",
     countdownEnd: new Date(now + 100 * 60 * 60 * 1000),
   },
   // Decor (8)
@@ -106,7 +108,8 @@ export const products: Product[] = [
     oldPrice: 79.99,
     discount: "37%",
     rating: 4.5,
-    image: "https://i.pinimg.com/736x/3m/4n/5o/3m4n5o.jpg",
+    image:
+      "https://i.pinimg.com/736x/96/c6/b7/96c6b716d4af4587ea0cc4cf14d2f6cd.jpg",
     countdownEnd: new Date(now + 48 * 60 * 60 * 1000),
   },
   {
@@ -117,7 +120,8 @@ export const products: Product[] = [
     oldPrice: 129.99,
     discount: "30%",
     rating: 4.3,
-    image: "https://i.pinimg.com/736x/4n/5o/6p/4n5o6p.jpg",
+    image:
+      "https://i.pinimg.com/736x/66/2f/31/662f31218aa8e51db234b83e3ec0c989.jpg",
     countdownEnd: new Date(now + 60 * 60 * 60 * 1000),
   },
   {
@@ -140,7 +144,8 @@ export const products: Product[] = [
     oldPrice: 499.99,
     discount: "30%",
     rating: 4.8,
-    image: "https://i.pinimg.com/736x/7d/35/9b/7d359b2345c4.jpg",
+    image:
+      "https://i.pinimg.com/736x/d4/12/e0/d412e05ed8464bd0390f13697c3e17be.jpg",
     countdownEnd: new Date(now + 40 * 60 * 60 * 1000),
   },
   {
@@ -151,7 +156,8 @@ export const products: Product[] = [
     oldPrice: 99.99,
     discount: "20%",
     rating: 4.1,
-    image: "https://i.pinimg.com/736x/88/22/ab/8822ab3423.jpg",
+    image:
+      "https://i.pinimg.com/736x/26/50/c1/2650c1ec374d2b78715a719f086eeaba.jpg",
     countdownEnd: new Date(now + 20 * 60 * 60 * 1000),
   },
   {
@@ -162,7 +168,8 @@ export const products: Product[] = [
     oldPrice: 249.99,
     discount: "28%",
     rating: 4.3,
-    image: "https://i.pinimg.com/736x/21/34/ba/2134ba1234.jpg",
+    image:
+      "https://i.pinimg.com/736x/58/13/f0/5813f016f939035c03494757ad3d17dd.jpg",
     countdownEnd: new Date(now + 30 * 60 * 60 * 1000),
   },
   {
@@ -173,7 +180,8 @@ export const products: Product[] = [
     oldPrice: 179.99,
     discount: "28%",
     rating: 4.2,
-    image: "https://i.pinimg.com/736x/12/34/56/123456abcd.jpg",
+    image:
+      "https://i.pinimg.com/736x/95/c2/70/95c270d03ec7685cf36cd3398a4de741.jpg",
     countdownEnd: new Date(now + 22 * 60 * 60 * 1000),
   },
   {
@@ -208,7 +216,8 @@ export const products: Product[] = [
     oldPrice: 199.99,
     discount: "35%",
     rating: 4.1,
-    image: "https://i.pinimg.com/736x/1a/2b/3c/1a2b3c.jpg",
+    image:
+      "https://i.pinimg.com/736x/ae/4c/dd/ae4cdd6c52283d663c87d6fc8d202f53.jpg",
     countdownEnd: new Date(now + 40 * 60 * 60 * 1000),
   },
   {
@@ -219,7 +228,8 @@ export const products: Product[] = [
     oldPrice: 299.99,
     discount: "27%",
     rating: 4.5,
-    image: "https://i.pinimg.com/736x/2b/3c/4d/2b3c4d.jpg",
+    image:
+      "https://i.pinimg.com/736x/a9/20/d9/a920d91ca81d36262cf7bd0260ec4126.jpg",
     countdownEnd: new Date(now + 30 * 60 * 60 * 1000),
   },
   {
@@ -230,7 +240,8 @@ export const products: Product[] = [
     oldPrice: 149.99,
     discount: "33%",
     rating: 4.0,
-    image: "https://i.pinimg.com/736x/3c/4d/5e/3c4d5e.jpg",
+    image:
+      "https://i.pinimg.com/736x/5f/fd/66/5ffd66899a7b3c03eb422db7b18b6325.jpg",
     countdownEnd: new Date(now + 20 * 60 * 60 * 1000),
   },
   {
@@ -241,7 +252,8 @@ export const products: Product[] = [
     oldPrice: 349.99,
     discount: "28%",
     rating: 4.6,
-    image: "https://i.pinimg.com/736x/4d/5e/6f/4d5e6f.jpg",
+    image:
+      "https://i.pinimg.com/1200x/af/39/36/af39364d7eb2c5acf088bfa68273bc30.jpg",
     countdownEnd: new Date(now + 50 * 60 * 60 * 1000),
   },
   {
@@ -252,7 +264,8 @@ export const products: Product[] = [
     oldPrice: 899.99,
     discount: "25%",
     rating: 4.8,
-    image: "https://i.pinimg.com/736x/7g/8h/9i/7g8h9i.jpg",
+    image:
+      "https://i.pinimg.com/736x/81/ab/ee/81abee7db9f623bf842e1e5ff6492f5e.jpg",
     countdownEnd: new Date(now + 80 * 60 * 60 * 1000),
   },
   {
@@ -263,7 +276,8 @@ export const products: Product[] = [
     oldPrice: 1199.99,
     discount: "30%",
     rating: 4.9,
-    image: "https://i.pinimg.com/736x/8h/9i/0j/8h9i0j.jpg",
+    image:
+      "https://i.pinimg.com/736x/ad/a4/c9/ada4c97c831009722cd3631807ffe4cd.jpg",
     countdownEnd: new Date(now + 90 * 60 * 60 * 1000),
   },
   {
@@ -274,7 +288,8 @@ export const products: Product[] = [
     oldPrice: 799.99,
     discount: "25%",
     rating: 4.6,
-    image: "https://i.pinimg.com/736x/9i/0j/1k/9i0j1k.jpg",
+    image:
+      "https://i.pinimg.com/736x/49/ef/99/49ef995e04f0ff10158cfb9f5c53d3c0.jpg",
     countdownEnd: new Date(now + 60 * 60 * 60 * 1000),
   },
   {
@@ -285,7 +300,8 @@ export const products: Product[] = [
     oldPrice: 999.99,
     discount: "25%",
     rating: 4.7,
-    image: "https://i.pinimg.com/736x/0j/1k/2l/0j1k2l.jpg",
+    image:
+      "https://i.pinimg.com/736x/33/64/05/336405d649276deb2e1776945683c85c.jpg",
     countdownEnd: new Date(now + 70 * 60 * 60 * 1000),
   },
   {
@@ -296,7 +312,8 @@ export const products: Product[] = [
     oldPrice: 849.99,
     discount: "23%",
     rating: 4.5,
-    image: "https://i.pinimg.com/736x/1k/2l/3m/1k2l3m.jpg",
+    image:
+      "https://i.pinimg.com/1200x/4f/68/f5/4f68f568e86669571673ec8f7104289f.jpg",
     countdownEnd: new Date(now + 50 * 60 * 60 * 1000),
   },
   {
@@ -307,7 +324,8 @@ export const products: Product[] = [
     oldPrice: 899.99,
     discount: "22%",
     rating: 4.6,
-    image: "https://i.pinimg.com/736x/2l/3m/4n/2l3m4n.jpg",
+    image:
+      "https://i.pinimg.com/736x/83/8b/5c/838b5cb04615e1e9436478494cc24e53.jpg",
     countdownEnd: new Date(now + 40 * 60 * 60 * 1000),
   },
   {
@@ -318,7 +336,8 @@ export const products: Product[] = [
     oldPrice: 59.99,
     discount: "33%",
     rating: 4.2,
-    image: "https://i.pinimg.com/736x/5o/6p/7q/5o6p7q.jpg",
+    image:
+      "https://i.pinimg.com/736x/49/58/27/495827cf2cfbe575d5c41a4b737f8ad9.jpg",
     countdownEnd: new Date(now + 50 * 60 * 60 * 1000),
   },
   {
@@ -329,7 +348,8 @@ export const products: Product[] = [
     oldPrice: 159.99,
     discount: "25%",
     rating: 4.4,
-    image: "https://i.pinimg.com/736x/6p/7q/8r/6p7q8r.jpg",
+    image:
+      "https://i.pinimg.com/1200x/d1/6d/d1/d16dd10831de9724169cbe56f005b113.jpg",
     countdownEnd: new Date(now + 70 * 60 * 60 * 1000),
   },
   {
@@ -340,7 +360,8 @@ export const products: Product[] = [
     oldPrice: 199.99,
     discount: "25%",
     rating: 4.5,
-    image: "https://i.pinimg.com/736x/7q/8r/9s/7q8r9s.jpg",
+    image:
+      "https://i.pinimg.com/736x/a6/a8/f2/a6a8f23d8a5ef524196e77915b7e2a9e.jpg",
     countdownEnd: new Date(now + 60 * 60 * 60 * 1000),
   },
   {
@@ -351,7 +372,8 @@ export const products: Product[] = [
     oldPrice: 99.99,
     discount: "30%",
     rating: 4.3,
-    image: "https://i.pinimg.com/736x/8r/9s/0t/8r9s0t.jpg",
+    image:
+      "https://i.pinimg.com/736x/c2/bd/b5/c2bdb55ef969cec6af691568cebdc5c8.jpg",
     countdownEnd: new Date(now + 48 * 60 * 60 * 1000),
   },
   {
@@ -362,7 +384,8 @@ export const products: Product[] = [
     oldPrice: 89.99,
     discount: "33%",
     rating: 4.2,
-    image: "https://i.pinimg.com/736x/9s/0t/1u/9s0t1u.jpg",
+    image:
+      "https://i.pinimg.com/1200x/71/23/c0/7123c04ada69bc86d09b373fee024ef4.jpg",
     countdownEnd: new Date(now + 50 * 60 * 60 * 1000),
   },
   {
@@ -373,7 +396,8 @@ export const products: Product[] = [
     oldPrice: 119.99,
     discount: "33%",
     rating: 4.4,
-    image: "https://i.pinimg.com/736x/0t/1u/2v/0t1u2v.jpg",
+    image:
+      "https://i.pinimg.com/1200x/fe/86/4d/fe864dde2086389a7586833d1cbcda51.jpg",
     countdownEnd: new Date(now + 60 * 60 * 60 * 1000),
   },
 ];
