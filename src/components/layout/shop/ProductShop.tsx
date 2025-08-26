@@ -95,7 +95,7 @@ const ProductShop = () => {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         {visibleProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

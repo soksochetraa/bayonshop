@@ -1,4 +1,5 @@
 import { HugeiconsIcon } from "@hugeicons/react";
+import Link from "next/link";
 import {
   UserCircle02Icon,
   FavouriteIcon,
@@ -8,11 +9,13 @@ import {
 const IconGroup = () => {
   return (
     <div className="flex space-x-4">
-      <HugeiconsIcon
-        icon={UserCircle02Icon}
-        className="text-white hover:text-gray-700 transition-colors cursor-pointer"
-        size={24}
-      />
+      <Link href="/user">
+        <HugeiconsIcon
+          icon={UserCircle02Icon}
+          className="text-white hover:text-gray-700 transition-colors cursor-pointer"
+          size={24}
+        />
+      </Link>
       <HugeiconsIcon
         icon={FavouriteIcon}
         className="text-white hover:text-gray-700 transition-colors cursor-pointer"
