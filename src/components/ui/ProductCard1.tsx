@@ -1,3 +1,5 @@
+// ProductCard1.tsx
+
 "use client";
 
 import React from "react";
@@ -22,10 +24,10 @@ interface ProductCardProps {
   category: string;
   price: number;
   oldPrice?: number;
-  discount?: string;
+  discountPercent?: number;
   rating: number;
   image: string;
-  countdownEnd: Date;
+  countdownEnd?: Date | null;
 }
 
 const ProductCard1: React.FC<ProductCardProps> = ({
@@ -33,7 +35,7 @@ const ProductCard1: React.FC<ProductCardProps> = ({
   category,
   price,
   oldPrice,
-  discount,
+  discountPercent = 0,
   rating,
   image,
   countdownEnd,
@@ -42,14 +44,18 @@ const ProductCard1: React.FC<ProductCardProps> = ({
     <div
       className={`${poppins.variable} font-sans w-full max-w-[300px] flex flex-col`}
     >
-      {/* Image Container */}
+      {/* Image */}
       <div className="relative w-full aspect-[9/10] rounded-2xl overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
-        {discount && (
+
+        {/* Discount badge only if > 0 */}
+        {discountPercent > 0 && (
           <span className="absolute top-2 left-2 px-3 py-1 bg-[#7DB800] rounded-full text-white text-xs font-medium shadow">
-            {discount} Off
+            {discountPercent}% Off
           </span>
         )}
+
+        {/* Icons */}
         <div className="flex flex-col gap-2 absolute top-2 right-2">
           {[FavouriteIcon, ArrowExpandIcon, ShoppingBasket02Icon].map(
             (icon, i) => (
@@ -66,12 +72,16 @@ const ProductCard1: React.FC<ProductCardProps> = ({
             )
           )}
         </div>
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-full px-2">
-          <TimerCounter targetTime={countdownEnd} />
-        </div>
+
+        {/* Timer only if provided */}
+        {countdownEnd && (
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-full px-2">
+            <TimerCounter targetTime={countdownEnd} />
+          </div>
+        )}
       </div>
 
-      {/* Text Container */}
+      {/* Text */}
       <div className="w-full mt-4 flex flex-col px-1">
         <div className="flex justify-between items-center">
           <span className="text-gray-500 text-xs sm:text-sm truncate">
@@ -86,16 +96,23 @@ const ProductCard1: React.FC<ProductCardProps> = ({
             <span className="text-xs sm:text-sm font-medium">{rating}</span>
           </div>
         </div>
+
         <h3 className="text-base sm:text-lg font-semibold text-gray-800 mt-1 truncate">
           {title}
         </h3>
+
+        {/* Price */}
         <div className="flex items-center gap-2 mt-1">
-          <span className="text-sm sm:text-md font-semibold text-green-600">
-            ${price}
+          <span
+            className={`text-sm sm:text-md font-semibold ${
+              oldPrice ? "text-green-600" : "text-gray-800"
+            }`}
+          >
+            ${price.toFixed(2)}
           </span>
           {oldPrice && (
             <span className="text-xs sm:text-sm line-through text-gray-400">
-              ${oldPrice}
+              ${oldPrice.toFixed(2)}
             </span>
           )}
         </div>

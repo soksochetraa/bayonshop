@@ -31,19 +31,32 @@ const TimerCounter: React.FC<TimerCounterProps> = ({ targetTime }) => {
     };
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  // 🚨 Render empty first (so SSR markup is stable)
+  const [timeLeft, setTimeLeft] = useState<ReturnType<
+    typeof calculateTimeLeft
+  > | null>(null);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
+    const update = () => setTimeLeft(calculateTimeLeft());
+    update(); // first run immediately
+    const timer = setInterval(update, 1000);
     return () => clearInterval(timer);
   }, [targetTime]);
 
-  const { days, hours, minutes, seconds } = timeLeft;
-
   const format = (n: number) => n.toString().padStart(2, "0");
+
+  // While hydrating, render placeholders (avoids mismatch)
+  if (!timeLeft) {
+    return (
+      <div
+        className={`${poppins.variable} font-sans w-fit flex justify-center items-center rounded-2xl gap-2 bg-amber-400 py-3 px-4 bottom-1 absolute left-1/2 transform -translate-x-1/2`}
+      >
+        Loading...
+      </div>
+    );
+  }
+
+  const { days, hours, minutes, seconds } = timeLeft;
 
   return (
     <div
