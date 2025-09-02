@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowRight02Icon } from "@hugeicons/core-free-icons";
 import { Poppins } from "next/font/google";
@@ -35,7 +35,7 @@ export default function Slider() {
       ],
     },
     {
-      bg: "images//hero_decor.png",
+      bg: "/images/hero_decor.png",
       title: "Home Décor Essentials",
       description:
         "Make every corner of your house beautiful with our curated décor collection.",
@@ -49,8 +49,26 @@ export default function Slider() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Automatic slide transition
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+    return () => clearInterval(interval); // Clear interval on unmount
+  }, [slides.length]);
+
+  const goToNextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  };
+
+  const goToPreviousSlide = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+    );
+  };
+
   return (
-    <div className="absolute w-screen h-[500px] md:h-[694px] top-0 left-0 -z-10 overflow-hidden">
+    <div className="absolute w-full h-[480px] sm:h-[520px] md:h-[600px] lg:h-[694px] top-0 left-0 -z-10 overflow-hidden group">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -58,6 +76,7 @@ export default function Slider() {
             index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
           }`}
         >
+          {/* Background image */}
           <img
             src={slide.bg}
             alt={`Slide ${index + 1}`}
@@ -67,19 +86,19 @@ export default function Slider() {
           {/* Overlay content */}
           <div
             className={`absolute w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
-              flex flex-col md:flex-row justify-center items-center gap-6 md:gap-20
-              px-6 text-white z-20 ${poppins.className}`}
+              flex flex-col lg:flex-row justify-center items-center gap-6 lg:gap-20
+              px-4 sm:px-6 md:px-10 text-white z-20 ${poppins.className}`}
           >
             {/* Text Section */}
-            <div className="flex flex-col justify-center items-center md:items-start gap-4 max-w-sm text-center md:text-left">
-              <h2 className="font-bold h-[76px] text-2xl md:text-4xl">
+            <div className="flex flex-col justify-center items-center lg:items-start gap-3 sm:gap-4 max-w-xs sm:max-w-sm text-center lg:text-left order-2 lg:order-1">
+              <h2 className="font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl leading-snug">
                 {slide.title}
               </h2>
-              <p className="text-sm md:text-base font-light mb-4">
+              <p className="text-xs sm:text-sm md:text-base font-light mb-2 sm:mb-4">
                 {slide.description}
               </p>
               <button
-                className="w-[120px] md:w-[140px] h-[40px] md:h-[45px] bg-[#7db800] text-white flex items-center justify-center rounded-lg"
+                className="w-[110px] sm:w-[130px] md:w-[140px] h-[36px] sm:h-[42px] md:h-[45px] bg-[#7db800] text-white flex items-center justify-center rounded-lg text-sm sm:text-base"
                 style={{ boxShadow: "0px 3.5px 8.5px 0 rgba(0, 0, 0, 0.14)" }}
               >
                 Shop Now
@@ -91,25 +110,25 @@ export default function Slider() {
               </button>
             </div>
 
-            {/* Products section */}
-            <div className="flex justify-center items-center gap-4 mt-6 md:mt-0">
-              <div className="flex flex-col gap-2">
+            {/* Products Section */}
+            <div className="flex justify-center items-center flex-col sm:flex-row gap-3 sm:gap-4 mt-4 lg:mt-0 order-1 lg:order-2">
+              <div className="flex flex-row sm:flex-col gap-2 sm:gap-3">
                 <img
                   src={slide.products[0]}
                   alt="Product 1"
-                  className="w-28 h-40 md:w-[270px] md:h-[200px] object-cover"
+                  className="w-[80px] h-[100px] sm:w-32 sm:h-44 md:w-[220px] md:h-[180px] object-cover rounded-lg"
                 />
                 <img
                   src={slide.products[1]}
                   alt="Product 2"
-                  className="w-28 h-40 md:w-[270px] md:h-[200px] object-cover"
+                  className="w-[80px] h-[100px] sm:w-32 sm:h-44 md:w-[220px] md:h-[180px] object-cover rounded-lg"
                 />
               </div>
               <div>
                 <img
                   src={slide.products[2]}
                   alt="Product 3"
-                  className="w-40 h-56 md:w-[300px] md:h-[350px] object-cover"
+                  className="w-[120px] h-[208px] sm:w-40 sm:h-56 md:w-[260px] md:h-[320px] object-cover rounded-lg"
                 />
               </div>
             </div>
@@ -117,18 +136,38 @@ export default function Slider() {
         </div>
       ))}
 
-      {/* Slide indicators */}
-      <div className="absolute bottom-6 md:bottom-16 left-1/4 -translate-x-1/2 flex gap-2 z-20">
+      {/* Slide Indicators */}
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 flex gap-2 sm:gap-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 md:w-4 md:h-4 rounded-full cursor-pointer ${
-              index === currentIndex ? "bg-[#7db800]" : "bg-gray-500"
+            className={`w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4 rounded-full cursor-pointer transition-all ${
+              index === currentIndex
+                ? "bg-[#7db800] scale-110"
+                : "bg-gray-400 hover:bg-gray-500"
             }`}
           />
         ))}
       </div>
+
+      {/* Navigation Arrows */}
+      <button
+        onClick={goToPreviousSlide}
+        className="absolute top-1/2 left-4 md:left-6 -translate-y-1/2 text-white bg-gray-500/50 hover:bg-gray-500 rounded-full p-2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30"
+      >
+        <HugeiconsIcon
+          icon={ArrowRight02Icon}
+          size={24}
+          className="transform rotate-180"
+        />
+      </button>
+      <button
+        onClick={goToNextSlide}
+        className="absolute top-1/2 right-4 md:right-6 -translate-y-1/2 text-white bg-gray-500/50 hover:bg-gray-500 rounded-full p-2 transition-opacity duration-300 opacity-0 group-hover:opacity-100 z-30"
+      >
+        <HugeiconsIcon icon={ArrowRight02Icon} size={24} />
+      </button>
     </div>
   );
 }

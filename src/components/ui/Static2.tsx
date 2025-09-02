@@ -46,57 +46,71 @@ const Static2 = () => {
   const format = (n: number) => n.toString().padStart(2, "0");
 
   return (
-    <div className="w-full flex justify-center p-6">
-      <div className="flex gap-6 w-[1320px]">
+    <div className="w-full flex justify-center p-4 sm:p-6 md:p-8">
+      <div className="flex flex-col items-center lg:flex-row gap-6 w-full max-w-7xl mx-auto">
         {/* Flash Sale Box */}
         <div
-          className={`${poppins.variable} font-sans flex-1 bg-gray-100 rounded-[20px] flex flex-col justify-center items-center relative p-6`}
+          className={`${poppins.variable} font-sans flex-1 bg-gray-100 rounded-[20px] flex flex-col justify-center items-center text-center relative p-6 md:p-10`}
         >
-          <span className="flex gap-2 font-bold text-5xl mb-4">
+          <span className="flex gap-2 font-bold text-3xl sm:text-4xl md:text-5xl mb-2 sm:mb-4">
             Flash <p className="text-green-800">Sale!</p>
           </span>
-          <p className="text-gray-700 mb-10 text-2xl font-medium">
+          <p className="text-gray-700 mb-6 text-base sm:text-lg md:text-2xl font-medium">
             Get 25% off – Limited Time Offer!
           </p>
 
-          <div className="flex justify-center items-center gap-6 mb-10">
+          <div className="flex justify-center items-center gap-2 sm:gap-4 md:gap-6 mb-6 md:mb-10">
             <div className="flex flex-col items-center">
-              <span className="text-5xl font-extrabold text-gray-900">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
                 {format(days)}
               </span>
-              <span className="text-lg text-gray-600">Days</span>
+              <span className="text-xs sm:text-sm md:text-lg text-gray-600">
+                Days
+              </span>
             </div>
-            <span className="text-5xl font-extrabold">:</span>
+            <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
+              :
+            </span>
             <div className="flex flex-col items-center">
-              <span className="text-5xl font-extrabold text-gray-900">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
                 {format(hours)}
               </span>
-              <span className="text-lg text-gray-600">Hours</span>
+              <span className="text-xs sm:text-sm md:text-lg text-gray-600">
+                Hours
+              </span>
             </div>
-            <span className="text-5xl font-extrabold">:</span>
+            <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
+              :
+            </span>
             <div className="flex flex-col items-center">
-              <span className="text-5xl font-extrabold text-gray-900">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
                 {format(minutes)}
               </span>
-              <span className="text-lg text-gray-600">Minutes</span>
+              <span className="text-xs sm:text-sm md:text-lg text-gray-600">
+                Minutes
+              </span>
             </div>
-            <span className="text-5xl font-extrabold">:</span>
+            <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
+              :
+            </span>
             <div className="flex flex-col items-center">
-              <span className="text-5xl font-extrabold text-gray-900">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900">
                 {format(seconds)}
               </span>
-              <span className="text-lg text-gray-600">Seconds</span>
+              <span className="text-xs sm:text-sm md:text-lg text-gray-600">
+                Seconds
+              </span>
             </div>
           </div>
 
-          <button className="px-10 py-4 bg-green-700 text-white text-xl font-semibold rounded-full shadow-lg hover:bg-green-800 transition-all flex gap-2 cursor-pointer">
+          <button className="px-6 py-3 sm:px-8 sm:py-3.5 md:px-10 md:py-4 bg-green-700 text-white text-base sm:text-lg md:text-xl font-semibold rounded-full shadow-lg hover:bg-green-800 transition-all flex gap-2 cursor-pointer">
             Shop Now
             <HugeiconsIcon icon={ArrowRight02Icon} />
           </button>
         </div>
 
         {/* Product Cards */}
-        <div className="flex flex-1 gap-6">
+        <div className="flex flex-1 flex-col sm:flex-row gap-4 sm:gap-6">
           <ProductCard1
             title="Wireless Headphones"
             category="Electronics"
