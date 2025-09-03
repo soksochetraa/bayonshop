@@ -25,7 +25,7 @@ const features = [
 
 const Static1 = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto px-4 py-10">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mx-auto px-4 py-10 ">
       {features.map((item, index) => (
         <div key={index} className="flex items-center gap-4">
           {/* Icon */}
