@@ -1,112 +1,133 @@
-import React, { useState } from "react";
+// src/components/layout/shop/ProductShop.tsx
+"use client";
+
+import React, { useState, useMemo } from "react";
 import { FaThLarge, FaList } from "react-icons/fa";
-import products from "../../data/products.js";
-
-const ProductCard = ({ product }: { product: any }) => (
-  <div className="flex flex-col items-center w-full ">
-    <div className="p-6 sm:p-8 md:p-10 bg-[#F0F0F0] w-full flex justify-center">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-[180px] sm:h-[200px] md:h-[220px] object-contain mb-4"
-      />
-    </div>
-
-    <div className="w-full px-2 pb-4">
-      <p className="mt-2 text-base sm:text-lg font-semibold text-[#212121] font-[poppins] ">
-        {product.name}
-      </p>
-
-      <div className="flex items-center gap-2 mt-2 ">
-        <span className="text-gray-400 line-through text-base font-[poppins]">
-          {product.oldPrice}
-        </span>
-        <span className="text-[#7DB800] font-semibold text-base font-[poppins]">
-          {product.price}
-        </span>
-      </div>
-
-      {/* Rating */}
-      <div className="flex items-center  mt-2 ">
-        {Array.from({ length: 5 }).map((_, i) =>
-          i < product.rating ? (
-            <span key={i} className="text-[#F90] text-lg">
-              &#9733;
-            </span>
-          ) : (
-            <span key={i} className="text-[#D3D3D3] text-lg">
-              &#9733;
-            </span>
-          )
-        )}
-        <a
-          href="#"
-          className="ml-2 text-sm text-gray-400 underline font-[poppins] hover:text-gray-600"
-        >
-          {product.reviews} reviews
-        </a>
-      </div>
-    </div>
-  </div>
-);
+import { useShop } from "./ShopContext";
+import ProductCard1 from "../../ui/ProductCard1";
 
 const ProductShop = () => {
+  const { filteredProducts } = useShop();
+  const [gridView, setGridView] = useState(true);
   const [itemsPerPage, setItemsPerPage] = useState(9);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortBy, setSortBy] = useState("Position");
 
-  // only show limited products
-  const visibleProducts = products.slice(0, itemsPerPage);
+  // Sorting logic
+  const sortedProducts = useMemo(() => {
+    let products = [...filteredProducts];
+    switch (sortBy) {
+      case "PriceLowHigh":
+        products.sort((a, b) => a.price - b.price);
+        break;
+      case "PriceHighLow":
+        products.sort((a, b) => b.price - a.price);
+        break;
+      case "Rating":
+        products.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+        break;
+      default:
+        break; // "Position" keeps original order
+    }
+    return products;
+  }, [filteredProducts, sortBy]);
+
+  const totalItems = sortedProducts.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const visibleProducts = sortedProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   return (
-    <div className="w-full flex flex-col mt-8 sm:mt-10 md:mt-[59px] px-2 sm:px-4 md:px-0">
+    <div className="w-full flex flex-col mt-13.5">
       {/* Top Bar */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-4">
+      <div className="flex md:flex-row justify-between items-start md:items-center mb-4 gap-4">
         <div className="flex flex-col sm:flex-row w-full sm:w-auto items-start sm:items-center justify-center gap-2 sm:gap-[17px]">
           <div className="flex gap-2 text-gray-600">
-            <div className="bg-[#DEDEDE] flex justify-center items-center p-2 rounded">
+            <div
+              className={`bg-[#DEDEDE]  justify-center items-center p-2 rounded hidden md:block ${
+                gridView ? "bg-[#7DB800]" : "bg-[#DEDEDE]"
+              }`}
+              onClick={() => setGridView(true)}
+            >
               <FaThLarge className="cursor-pointer" />
             </div>
-            <div className="bg-[#DEDEDE] flex justify-center items-center p-2 rounded">
+            <div
+              className={`bg-[#DEDEDE]  justify-center items-center p-2 rounded hidden md:block ${
+                !gridView ? "bg-[#7DB800]" : "bg-[#DEDEDE]"
+              }`}
+              onClick={() => setGridView(false)}
+            >
               <FaList className="cursor-pointer" />
             </div>
           </div>
           <p className="text-sm text-gray-600 font-[poppins]">
-            Items 1–{visibleProducts.length} of {products.length}
+            Items {startIndex + 1}–
+            {Math.min(startIndex + itemsPerPage, totalItems)} of {totalItems}
           </p>
         </div>
 
-        <div className="flex items-center gap-4 w-full md:w-auto">
-          {/* Sort By */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600 font-[poppins]">
-              Sort By
-            </span>
-            <select className="text-gray-600 bg-[#F0F0F0] px-2 py-1 text-sm font-[poppins] rounded">
-              <option>Position</option>
-              <option>Name</option>
-              <option>Price</option>
-            </select>
-            <img
-              src="/images/Frame5.svg"
-              alt="Frame5"
-              className="hidden sm:block"
-            />
-          </div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-gray-600 font-[poppins]">Sort By</span>
+          <select
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+              setCurrentPage(1); // reset page on sort change
+            }}
+            className="bg-[#F0F0F0] px-2 py-1 text-sm font-[poppins] rounded w-[86px] lg:w-[130px]"
+          >
+            <option value="Position">Position</option>
+            <option value="PriceLowHigh">Price: Low to High</option>
+            <option value="PriceHighLow">Price: High to Low</option>
+            <option value="Rating">Rating</option>
+          </select>
         </div>
       </div>
 
-      {/* Product Grid */}
-      <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-        {visibleProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+      {/* Product List */}
+      <div
+        className={`grid gap-6 ${
+          gridView
+            ? "grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+            : "grid-cols-1"
+        }`}
+      >
+        {visibleProducts.length === 0 ? (
+          <p className="text-gray-500 col-span-full text-center mt-10">
+            No products match your filters.
+          </p>
+        ) : (
+          visibleProducts.map((p) => (
+            <ProductCard1
+              key={p.id}
+              id={p.id}
+              title={p.title}
+              category={p.category}
+              price={p.price}
+              oldPrice={p.oldPrice}
+              discountPercent={p.discountPercent}
+              rating={p.rating}
+              image={p.images[0]}
+              images={p.images}
+              countdownEnd={p.countdownEnd}
+              isListView={!gridView}
+            />
+          ))
+        )}
       </div>
 
       {/* Pagination */}
-      <div className="flex flex-col sm:flex-row justify-end items-center mt-6 gap-2">
+      <div className=" hidden md:flex flex-col sm:flex-row justify-end items-center mt-6 gap-2">
         <span className="text-sm text-gray-600 font-[poppins]">Show</span>
         <select
           value={itemsPerPage}
-          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+          onChange={(e) => {
+            setItemsPerPage(Number(e.target.value));
+            setCurrentPage(1); // reset page
+          }}
           className="bg-[#F0F0F0] px-2 py-1 text-sm font-[poppins] rounded"
         >
           <option value={9}>9</option>
@@ -114,6 +135,40 @@ const ProductShop = () => {
           <option value={32}>32</option>
         </select>
         <span className="text-sm text-gray-600 font-[poppins]">per page</span>
+      </div>
+      <div className="md:hidden flex items-center justify-center gap-2 sm:mt-0 mt-6">
+        {/* Previous */}
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          className="p-2 border rounded disabled:opacity-50 mr-7"
+          disabled={currentPage === 1}
+        >
+          &lt;
+        </button>
+
+        {/* Page numbers */}
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <button
+            key={num}
+            onClick={() => setCurrentPage(num)}
+            className={`p-2  ${
+              currentPage === num ? "bg-[#E5E5E5] font-bold" : ""
+            }`}
+          >
+            {num}
+          </button>
+        ))}
+
+        {/* Next */}
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          className="p-2 border rounded disabled:opacity-50 ml-7"
+          disabled={currentPage === totalPages}
+        >
+          &gt;
+        </button>
       </div>
     </div>
   );

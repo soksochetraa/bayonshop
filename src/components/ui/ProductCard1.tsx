@@ -36,6 +36,7 @@ interface ProductCardProps {
   images?: string[];
   countdownEnd?: Date | null;
   slug?: string;
+  isListView?: boolean;
 }
 
 const ProductCard1: React.FC<ProductCardProps> = (props) => {

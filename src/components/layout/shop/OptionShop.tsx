@@ -1,40 +1,87 @@
-import React, { useState } from "react";
-import { FaChevronDown, FaTimes } from "react-icons/fa";
+// src/components/layout/shop/OptionShop.tsx
+"use client";
 
-// Filters with sample options
-const filters: Record<string, string[]> = {
-  Style: ["Casual", "Formal", "Sport", "Luxury"],
-  Category: ["Watches", "Bags", "Shoes", "Accessories"],
-  Size: ["Small", "Medium", "Large", "Extra Large"],
-  Price: ["$0 - $50", "$50 - $100", "$100 - $200", "$200+"],
-  Color: ["Black", "Silver", "Gold", "Blue", "Red"],
+import React, { useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import { useShop } from "./ShopContext";
+
+// Filters with numeric ranges for Price
+const filters: Record<string, { label: string; range?: [number, number] }[]> = {
+  Style: [
+    { label: "All" },
+    { label: "Casual" },
+    { label: "Formal" },
+    { label: "Sport" },
+    { label: "Luxury" },
+  ],
+  Category: [
+    { label: "All" },
+    { label: "Watches" },
+    { label: "Bags" },
+    { label: "Shoes" },
+    { label: "Accessories" },
+    { label: "Chair" },
+    { label: "Table" },
+    { label: "Sofa" },
+    { label: "Decor" },
+    { label: "Home" },
+    { label: "Furniture" },
+    { label: "Kitchen" },
+    { label: "Bath" },
+    { label: "Garden" },
+    { label: "Office" },
+    { label: "Fitness" },
+    { label: "Electronics" },
+  ],
+  Size: [
+    { label: "All" },
+    { label: "Small" },
+    { label: "Medium" },
+    { label: "Large" },
+    { label: "Extra Large" },
+  ],
+  Price: [
+    { label: "All" },
+    { label: "$0 - $50", range: [0, 50] },
+    { label: "$50 - $100", range: [50, 100] },
+    { label: "$100 - $200", range: [100, 200] },
+    { label: "$200+", range: [200, Infinity] },
+  ],
+  Color: [
+    { label: "All" },
+    { label: "Black" },
+    { label: "Silver" },
+    { label: "Gold" },
+    { label: "Blue" },
+    { label: "Red" },
+    { label: "Brown" },
+  ],
 };
 
 const OptionShop = () => {
   const [openFilter, setOpenFilter] = useState<string | null>(null);
+  const { selectedFilters, setSelectedFilters } = useShop();
 
-  const [compareItems, setCompareItems] = useState<string[]>([
-    "Summit Watch",
-    "Cruise Dual Analog Watch",
-  ]);
-
-  const handleRemoveCompareItem = (item: string) => {
-    setCompareItems(compareItems.filter((i) => i !== item));
+  const handleSelectFilter = (filter: string, option: string) => {
+    setSelectedFilters({ ...selectedFilters, [filter]: option });
   };
 
-  const handleClearAll = () => {
-    setCompareItems([]);
+  const handleResetFilters = () => {
+    const reset: Record<string, string> = {};
+    Object.keys(filters).forEach((key) => {
+      reset[key] = "All";
+    });
+    setSelectedFilters(reset);
   };
 
   return (
-    <div className="w-full max-w-xs sm:max-w-sm md:w-[287px] flex flex-col items-center gap-7.5 mt-[40px] md:mt-[59px] px-2 sm:px-0">
+    <div className="w-full max-w-xs sm:max-w-sm md:w-[287px] flex flex-col items-center gap-7.5 mt-[40px] md:mt-[59px] px-2 sm:px-0 ">
       {/* Shopping Options */}
       <div className="flex flex-col w-full">
         <h2 className="text-[#212121] font-[poppins] text-[18px] font-semibold leading-[107.5%] mb-[26px]">
           Shopping Options
         </h2>
 
-        {/* Filters (Dynamic with sample options) */}
         {Object.entries(filters).map(([filter, options], index, arr) => (
           <div
             key={filter}
@@ -61,70 +108,31 @@ const OptionShop = () => {
 
             {openFilter === filter && (
               <div className="pl-2 py-1 text-sm text-gray-600 font-[poppins]">
-                {options.map((option, i) => (
-                  <p key={i} className="py-1 hover:underline cursor-pointer">
-                    {option}
+                {options.map((optionObj, i) => (
+                  <p
+                    key={i}
+                    className={`py-1 hover:underline cursor-pointer ${
+                      selectedFilters[filter] === optionObj.label
+                        ? "font-semibold text-[#7DB800]"
+                        : ""
+                    }`}
+                    onClick={() => handleSelectFilter(filter, optionObj.label)}
+                  >
+                    {optionObj.label}
                   </p>
                 ))}
               </div>
             )}
           </div>
         ))}
-      </div>
 
-      {/* Compare Products */}
-      <div className="w-full">
-        <div className="flex flex-col xs:flex-row xs:items-center gap-1">
-          <h3 className="text-[#212121] font-[poppins] text-[18px] font-semibold leading-[147.5%]">
-            Compare Products
-          </h3>
-          <span className="text-[#828282] text-[12px] font-[poppins]">
-            ({compareItems.length} items)
-          </span>
-        </div>
-
-        <ul className="mt-2 space-y-2">
-          {compareItems.length === 0 ? (
-            <li className="text-gray-600 text-sm font-[poppins]">
-              You have no items to compare.
-            </li>
-          ) : (
-            compareItems.map((item, i) => (
-              <li key={i} className="flex items-center gap-2 text-gray-700">
-                <FaTimes
-                  size={10}
-                  className="cursor-pointer"
-                  onClick={() => handleRemoveCompareItem(item)}
-                />
-                <p className="hover:underline font-[poppins] cursor-pointer">
-                  {item}
-                </p>
-              </li>
-            ))
-          )}
-        </ul>
-
-        {compareItems.length > 0 && (
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mt-3">
-            <button className="bg-[#7DB800] text-white px-4 py-2 rounded-[2px] font-[poppins] text-sm cursor-pointer w-full sm:w-auto">
-              Compare
-            </button>
-            <button
-              className="text-gray-600 hover:underline font-[poppins] cursor-pointer w-full sm:w-auto"
-              onClick={handleClearAll}
-            >
-              Clear All
-            </button>
-          </div>
-        )}
-      </div>
-
-      {/* My Wish List */}
-      <div className="mt-7.5 w-full sm:w-[285px]">
-        <p className="font-[poppins] text-[18px] font-semibold">My Wish List</p>
-        <p className="text-gray-600 text-sm mt-2.5 font-[poppins]">
-          You have no items in your wish list.
-        </p>
+        {/* Reset Filters Button */}
+        <button
+          className="mt-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-[poppins] text-sm"
+          onClick={handleResetFilters}
+        >
+          Reset Filters
+        </button>
       </div>
     </div>
   );
