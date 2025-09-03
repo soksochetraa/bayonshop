@@ -9,7 +9,7 @@ interface FAQItemProps {
 }
 
 const FAQItem = ({ title, children }: FAQItemProps) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   return (
     <div className="w-[1320px] border-b border-t border-gray-200 py-4 font-[poppins]">

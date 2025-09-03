@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link"; // ✅ Import Link
+import Link from "next/link";
 import SearchBar from "./SearchBar";
 import NavIcons from "./NavIcons";
 import { Poppins } from "next/font/google";
@@ -13,12 +13,10 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-// ✅ map items to routes
-const menuItems: { name: string; path: string }[] = [
+const menuItems: { name: string; path: string; disabled?: boolean }[] = [
   { name: "Home", path: "/" },
-  { name: "Product", path: "/product" },
-  { name: "Elements", path: "/elements" },
   { name: "Shop", path: "/shop" },
+  { name: "Product", path: "/product", disabled: true },
   { name: "Blog", path: "/blog" },
 ];
 
@@ -26,23 +24,35 @@ const Navigation = () => {
   const [lineStyle, setLineStyle] = useState({});
   const ulRef = useRef<HTMLUListElement | null>(null);
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const pathname = usePathname();
-  const active =
-    menuItems.find((item) => item.path === pathname)?.name || "Home";
+
+  let active: string = "";
+
+  if (pathname === "/") {
+    active = "Home";
+  } else if (pathname.startsWith("/shop")) {
+    active = "Shop";
+  } else if (pathname.startsWith("/product-detail")) {
+    active = "Product"; // highlight only on detail pages
+  } else if (pathname.startsWith("/blog")) {
+    active = "Blog";
+  }
+
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const activeEl = itemRefs.current[active];
+    const activeEl = active ? itemRefs.current[active] : null;
     if (activeEl && ulRef.current) {
       const center = activeEl.offsetLeft + activeEl.offsetWidth / 2 - 25;
       setLineStyle({
         left: center,
         width: 50,
       });
+    } else {
+      // Hide underline if no active item
+      setLineStyle({ width: 0 });
     }
-  }, [active]);
+  }, [active, pathname]);
 
   return (
     <nav
@@ -55,8 +65,6 @@ const Navigation = () => {
         <SearchBar />
         <span className="w-auto flex items-center justify-center">
           <Link href="/">
-            {" "}
-            {/* ✅ Click logo to go Home */}
             <Image
               src="/icons/logo.svg"
               alt="Logo"
@@ -66,7 +74,6 @@ const Navigation = () => {
             />
           </Link>
         </span>
-        {/* Desktop & Mobile icons */}
         <NavIcons />
       </div>
 
@@ -82,11 +89,16 @@ const Navigation = () => {
               className={`inline-block px-4 py-2 cursor-pointer transition-colors ${
                 active === item.name
                   ? "text-[#7db800]"
+                  : item.disabled
+                  ? "text-gray-400 cursor-not-allowed"
                   : "text-white hover:text-[#7db800]"
               }`}
             >
-              {/* ✅ Link instead of onClick */}
-              <Link href={item.path}>{item.name}</Link>
+              {item.disabled ? (
+                <span>{item.name}</span>
+              ) : (
+                <Link href={item.path}>{item.name}</Link>
+              )}
             </li>
           ))}
           <span

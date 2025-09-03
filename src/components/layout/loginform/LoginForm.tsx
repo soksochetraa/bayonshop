@@ -75,12 +75,16 @@ const LoginForm = () => {
       <div className="flex items-center gap-2 mb-[68px] w-full">
         <input
           type="checkbox"
+          id="newsletter"
           name="newsletter"
           checked={formData.newsletter}
           onChange={handleChange}
-          className="w-4 h-4 border-gray-300 rounded"
+          className="w-4 h-4 border-gray-300 rounded cursor-pointer"
         />
-        <label className="text-sm font-[poppins] text-[#828282] ml-1">
+        <label
+          htmlFor="newsletter"
+          className="text-sm font-[poppins] text-[#828282] ml-1 cursor-pointer"
+        >
           Sign Up for Newsletter
         </label>
       </div>
@@ -142,7 +146,7 @@ const LoginForm = () => {
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 w-full mb-[179px]">
         <button
           type="submit"
-          className="w-full sm:w-auto bg-[#7DB800] text-white font-[poppins] px-4 py-3.5 hover:bg-green-600"
+          className="w-full sm:w-auto bg-[#7DB800] text-white font-[poppins] px-4 py-3.5 hover:bg-green-600 cursor-pointer"
         >
           Create an Account
         </button>
@@ -150,7 +154,7 @@ const LoginForm = () => {
           {" "}
           <button
             type="button"
-            className="w-full sm:w-auto text-gray-500 hover:text-gray-700 font-[poppins] font-bold"
+            className="w-full sm:w-auto text-gray-500 hover:text-gray-700 font-[poppins] font-bold cursor-pointer"
           >
             Back
           </button>

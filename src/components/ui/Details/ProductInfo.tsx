@@ -65,7 +65,7 @@ export default function ProductInfo({
                   setSelectedVariant(variant);
                   setQuantity(1);
                 }}
-                className={`px-4 py-2 border ${
+                className={`px-4 py-2 border cursor-pointer ${
                   selectedVariant?.size === variant.size
                     ? "border-[#7DB800] text-[#7DB800]"
                     : "border-gray-300 text-gray-600"

@@ -36,7 +36,7 @@ export default function ProductGallery({
         />
         <button
           onClick={prevImage}
-          className="absolute top-1/2 left-4 -translate-y-1/2 w-[45px] h-[45px] flex items-center justify-center bg-white rounded-full shadow"
+          className="absolute top-1/2 left-4 -translate-y-1/2 w-[45px] h-[45px] flex items-center justify-center bg-white rounded-full shadow cursor-pointer"
         >
           <HugeiconsIcon
             icon={ArrowLeft02Icon}
@@ -47,7 +47,7 @@ export default function ProductGallery({
         </button>
         <button
           onClick={nextImage}
-          className="absolute top-1/2 right-4 -translate-y-1/2 w-[45px] h-[45px] flex items-center justify-center bg-white rounded-full shadow"
+          className="absolute top-1/2 right-4 -translate-y-1/2 w-[45px] h-[45px] flex items-center justify-center bg-white rounded-full shadow cursor-pointer"
         >
           <HugeiconsIcon
             icon={ArrowRight02Icon}

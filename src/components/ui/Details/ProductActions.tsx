@@ -5,6 +5,7 @@ import {
   FavouriteIcon,
   Mail01Icon,
 } from "@hugeicons/core-free-icons";
+import { useCart } from "../../../context/CartContext";
 
 export default function ProductActions({
   product,
@@ -17,6 +18,8 @@ export default function ProductActions({
   quantity: number;
   setQuantity: (qty: number) => void;
 }) {
+  const { addToCart } = useCart(); // <-- get addToCart from context
+
   const increment = () => {
     if (!selectedVariant) return;
     if (quantity < selectedVariant.stock) {
@@ -25,6 +28,23 @@ export default function ProductActions({
   };
 
   const decrement = () => setQuantity(quantity > 1 ? quantity - 1 : 1);
+
+  const handleAddToCart = () => {
+    if (!selectedVariant) return;
+
+    if (quantity > selectedVariant.stock) {
+      alert(`Only ${selectedVariant.stock} items in stock`);
+      return;
+    }
+
+    addToCart({
+      id: product.id + selectedVariant.size,
+      name: product.title + ` (${selectedVariant.size})`,
+      price: selectedVariant.price,
+      quantity,
+      image: selectedVariant.image || product.images[0],
+    });
+  };
 
   return (
     <>
@@ -39,9 +59,24 @@ export default function ProductActions({
           >
             <HugeiconsIcon icon={MinusSignIcon} size={18} />
           </button>
-          <span className="w-12 font-normal text-sm text-center text-[#212121]">
-            {quantity}
-          </span>
+          <input
+            type="number"
+            min={1}
+            value={quantity}
+            onChange={(e) => {
+              let qty = parseInt(e.target.value, 10);
+              if (isNaN(qty) || qty < 1) qty = 1;
+              if (selectedVariant && qty > selectedVariant.stock)
+                qty = selectedVariant.stock;
+              setQuantity(qty);
+            }}
+            className="w-12 text-center outline-none focus:outline-none
+            [&::-webkit-inner-spin-button]:appearance-none 
+            [&::-webkit-outer-spin-button]:appearance-none
+            [&::-moz-appearance]:textfield"
+            style={{ fontFamily: "var(--font-poppins)" }}
+          />
+
           <button
             type="button"
             onClick={increment}
@@ -51,10 +86,13 @@ export default function ProductActions({
           </button>
         </form>
       </div>
-      <button className="px-10 py-3 bg-[#7db800] flex items-center justify-center cursor-pointer shadow-md hover:bg-[#6aa100] transition">
+      <button
+        onClick={handleAddToCart} // <-- add to cart handler
+        className="px-10 py-3 bg-[#7db800] flex items-center justify-center cursor-pointer shadow-md hover:bg-[#6aa100] transition mt-4"
+      >
         <span className="font-bold text-[16px] text-white">Add to Cart</span>
       </button>
-      <div className="flex justify-center items-start gap-8">
+      <div className="flex justify-center items-start gap-8 mt-4">
         <button className="flex gap-2 items-center cursor-pointer">
           <HugeiconsIcon
             icon={FavouriteIcon}

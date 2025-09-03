@@ -52,9 +52,6 @@ const ProductList: React.FC = () => {
 
       {/* Category Filter */}
       <div className="w-full flex justify-center items-center flex-col gap-4 mb-8">
-        <span className="font-semibold text-gray-700 text-sm sm:text-base md:text-lg">
-          Category
-        </span>
         <div className="flex flex-wrap justify-center gap-2">
           {categories.map((cat) => (
             <button

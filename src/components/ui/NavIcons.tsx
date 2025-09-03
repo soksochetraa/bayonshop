@@ -36,9 +36,9 @@ const currency: Currency[] = [
 
 const menuItems: MenuItem[] = [
   { name: "Home", path: "/" },
+  { name: "Shop", path: "/shop" },
   { name: "Product", path: "/product" },
   { name: "Elements", path: "/elements" },
-  { name: "Shop", path: "/shop" },
   { name: "Blog", path: "/blog" },
 ];
 

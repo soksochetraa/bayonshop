@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "../components/ui/Navigation";
 import Footer from "../components/ui/Footer";
+import { CartProvider } from "../context/CartContext";
+import { FavoritesProvider } from "../context/FavoritesContext";
+import { Toaster } from "react-hot-toast"; // ✅ import
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +29,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
-        <Navigation />
-        {children}
-        <Footer />
+        <CartProvider>
+          <FavoritesProvider>
+            <Navigation />
+            {children}
+            <Footer />
+            <Toaster position="top-right" reverseOrder={false} />
+          </FavoritesProvider>
+        </CartProvider>
       </body>
     </html>
   );
