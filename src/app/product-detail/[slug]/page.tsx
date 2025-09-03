@@ -8,7 +8,7 @@ import ProductInfo from "../../../components/ui/Details/ProductInfo";
 import ProductActions from "../../../components/ui/Details/ProductActions";
 import ProductDetails from "../../../components/ui/Details/ProductDetails";
 import ProductReviews from "../../../components/ui/Details/ProductReviews";
-import ProductCard1 from "../../../components/ui/ProductCard1"; // adjust path if needed
+import ProductCard1 from "../../../components/ui/ProductCard1";
 
 interface Props {
   params: { slug: string };
@@ -71,6 +71,7 @@ export default function ProductDetailPage({ params }: Props) {
               {relatedProducts.map((item) => (
                 <ProductCard1
                   key={item.id}
+                  id={item.id}
                   title={item.title}
                   category={item.category}
                   price={item.price}

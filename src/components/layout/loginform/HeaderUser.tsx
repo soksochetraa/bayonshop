@@ -4,15 +4,9 @@ const HeaderUser = () => {
   return (
     <div className="  w-full h-auto py-2.5  md:p-0 bg-[url('/images/hero_shop.png')] bg-cover bg-no-repeat flex justify-center items-center ">
       <div className=" flex-col flex w-full h-full md:w-[1420px] md:h-[180px] ">
-        <div className=" md:ml-[80px] ml-12 mt-[39px] w-[180px] h-auto flex justify-center items-center gap-2.5 ">
-          <p className="text-white text-[12px] font-[poppins] ">Home</p>
-          <img
-            src="/images/Vector.svg"
-            alt="arow"
-            className="w-[4.5px] h-[9px]"
-          />
-          <p className=" text-[#A7A7A7] font-[poppins] text-[12px] font-normal not-italic leading-normal">
-            Inner page Example
+        <div className=" md:ml-[80px] ml-12 mt-[39px] w-[180px] h-auto flex items-center gap-2.5 ">
+          <p className="text-white text-[12px] font-[poppins] ">
+            Log in and Register
           </p>
         </div>
         <div className="md:ml-[30px] md:mt-8 mt-2.5 ">
